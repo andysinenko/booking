@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <databaseChangeLog
+            xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.15.xsd">
+
+    <changeSet id="004-insert-initial-data" author="Andrew Sinenko">
+
+        <!-- USERS -->
+        <insert tableName="users" schemaName="booking">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="Alice"/>
+        </insert>
+        <insert tableName="users" schemaName="booking">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="Bob"/>
+        </insert>
+        <insert tableName="users" schemaName="booking">
+            <column name="id" valueNumeric="3"/>
+            <column name="name" value="Charlie"/>
+        </insert>
+
+        <!-- UNITS -->
+        <insert tableName="units" schemaName="booking">
+            <column name="id" valueNumeric="1"/>
+            <column name="rooms" valueNumeric="2"/>
+            <column name="type" value="FLAT"/>
+            <column name="floor" valueNumeric="3"/>
+            <column name="cost" valueNumeric="500.00"/>
+            <column name="available" valueBoolean="true"/>
+            <column name="description" value="Cozy flat near park"/>
+            <column name="created_by_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="units" schemaName="booking">
+            <column name="id" valueNumeric="2"/>
+            <column name="rooms" valueNumeric="3"/>
+            <column name="type" value="HOME"/>
+            <column name="floor" valueNumeric="1"/>
+            <column name="cost" valueNumeric="800.00"/>
+            <column name="available" valueBoolean="true"/>
+            <column name="description" value="Spacious home with garage"/>
+            <column name="created_by_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="units" schemaName="booking">
+            <column name="id" valueNumeric="3"/>
+            <column name="rooms" valueNumeric="3"/>
+            <column name="type" value="APPARTMENT"/>
+            <column name="floor" valueNumeric="10"/>
+            <column name="cost" valueNumeric="1000.00"/>
+            <column name="available" valueBoolean="true"/>
+            <column name="description" value="Spacious home with garage"/>
+            <column name="created_by_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="units" schemaName="booking">
+            <column name="id" valueNumeric="4"/>
+            <column name="rooms" valueNumeric="2"/>
+            <column name="type" value="FLAT"/>
+            <column name="floor" valueNumeric="2"/>
+            <column name="cost" valueNumeric="1100.00"/>
+            <column name="available" valueBoolean="true"/>
+            <column name="description" value="Modern flat with balcony"/>
+            <column name="created_by_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="units" schemaName="booking">
+            <column name="id" valueNumeric="5"/>
+            <column name="rooms" valueNumeric="4"/>
+            <column name="type" value="HOME"/>
+            <column name="floor" valueNumeric="1"/>
+            <column name="cost" valueNumeric="950.00"/>
+            <column name="available" valueBoolean="false"/>
+            <column name="description" value="Family home with garden"/>
+            <column name="created_by_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="units" schemaName="booking">
+            <column name="id" valueNumeric="6"/>
+            <column name="rooms" valueNumeric="1"/>
+            <column name="type" value="FLAT"/>
+            <column name="floor" valueNumeric="5"/>
+            <column name="cost" valueNumeric="1200.00"/>
+            <column name="available" valueBoolean="true"/>
+            <column name="description" value="Studio apartment downtown"/>
+            <column name="created_by_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="units" schemaName="booking">
+            <column name="id" valueNumeric="7"/>
+            <column name="rooms" valueNumeric="2"/>
+            <column name="type" value="FLAT"/>
+            <column name="floor" valueNumeric="4"/>
+            <column name="cost" valueNumeric="850.00"/>
+            <column name="available" valueBoolean="true"/>
+            <column name="description" value="Flat with city view"/>
+            <column name="created_by_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="units" schemaName="booking">
+            <column name="id" valueNumeric="8"/>
+            <column name="rooms" valueNumeric="3"/>
+            <column name="type" value="APPARTMENT"/>
+            <column name="floor" valueNumeric="8"/>
+            <column name="cost" valueNumeric="1050.00"/>
+            <column name="available" valueBoolean="false"/>
+            <column name="description" value="Apartment near metro"/>
+            <column name="created_by_id" valueNumeric="2"/>
+        </insert>
+        <insert tableName="units" schemaName="booking">
+            <column name="id" valueNumeric="9"/>
+            <column name="rooms" valueNumeric="2"/>
+            <column name="type" value="HOME"/>
+            <column name="floor" valueNumeric="6"/>
+            <column name="cost" valueNumeric="990.00"/>
+            <column name="available" valueBoolean="true"/>
+            <column name="description" value="Studio with large windows"/>
+            <column name="created_by_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="units" schemaName="booking">
+            <column name="id" valueNumeric="10"/>
+            <column name="rooms" valueNumeric="4"/>
+            <column name="type" value="HOME"/>
+            <column name="floor" valueNumeric="1"/>
+            <column name="cost" valueNumeric="1150.00"/>
+            <column name="available" valueBoolean="true"/>
+            <column name="description" value="Luxury home with pool"/>
+            <column name="created_by_id" valueNumeric="3"/>
+        </insert>
+
+        <!-- BOOKINGS -->
+        <insert tableName="bookings" schemaName="booking">
+            <column name="id" valueNumeric="1"/>
+            <column name="unit_id" valueNumeric="1"/>
+            <column name="user_id" valueNumeric="2"/>
+            <column name="created_by_id" valueNumeric="1"/>
+            <column name="start_date" valueDate="2025-07-01"/>
+            <column name="end_date" valueDate="2025-07-10"/>
+            <column name="status" value="CONFIRMED"/>
+        </insert>
+
+        <!-- PAYMENTS -->
+        <insert tableName="payments" schemaName="booking">
+            <column name="id" valueNumeric="1"/>
+            <column name="booking_id" valueNumeric="1"/>
+            <column name="amount" valueNumeric="500.00"/>
+            <column name="paid_at" valueDate="2025-06-15T10:30:00"/>
+        </insert>
+
+        <!-- EVENTS -->
+        <insert tableName="events" schemaName="booking">
+            <column name="id" valueNumeric="1"/>
+            <column name="unit_id" valueNumeric="1"/>
+            <column name="created_by_id" valueNumeric="1"/>
+            <column name="event_type" value="CREATED"/>
+        </insert>
+
+    </changeSet>
+
+    </databaseChangeLog>

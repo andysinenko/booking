@@ -1,0 +1,23 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro
+        http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+    <changeSet id="0000" author="Andrew Sinenko">
+        <tagDatabase tag="init" />
+    </changeSet>
+
+    <include file="changeset/changeset-000-create-schema.xml" relativeToChangelogFile="true" />
+    <include file="changeset/changeset-001-create-sequences.xml" relativeToChangelogFile="true" />
+    <include file="changeset/changeset-002-create-tables.xml" relativeToChangelogFile="true" />
+    <include file="changeset/changeset-003-create-system-settings.xml" relativeToChangelogFile="true" />
+    <include file="changeset/changeset-004-initial-data.xml" relativeToChangelogFile="true" />
+
+</databaseChangeLog>

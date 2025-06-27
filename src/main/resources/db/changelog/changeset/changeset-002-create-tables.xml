@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.15.xsd">
+
+    <changeSet id="002-create-tables" author="Andrew Sinenko">
+
+        <!-- USERS -->
+        <createTable tableName="users" schemaName="booking">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- UNITS -->
+        <createTable tableName="units" schemaName="booking">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="rooms" type="INT"/>
+            <column name="type" type="VARCHAR(20)"/>
+            <column name="floor" type="INT"/>
+            <column name="cost" type="DECIMAL(10,2)"/>
+            <column name="available" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="units"
+                                 baseColumnNames="created_by_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_units_users"
+                                 baseTableSchemaName="booking"
+                                 referencedTableSchemaName="booking"/>
+
+        <createTable tableName="bookings" schemaName="booking">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="unit_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="start_date" type="DATE"/>
+            <column name="end_date" type="DATE"/>
+            <column name="status" type="VARCHAR(20)"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_bookings_created_by"
+                                 baseTableName="bookings"
+                                 baseColumnNames="created_by_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="booking"
+                                 referencedTableSchemaName="booking"/>
+
+        <addForeignKeyConstraint constraintName="fk_bookings_unit"
+                                 baseTableName="bookings"
+                                 baseColumnNames="unit_id"
+                                 referencedTableName="units"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="booking"
+                                 referencedTableSchemaName="booking"/>
+
+        <addForeignKeyConstraint constraintName="fk_bookings_user"
+                                 baseTableName="bookings"
+                                 baseColumnNames="user_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="booking"
+                                 referencedTableSchemaName="booking"/>
+
+        <createTable tableName="payments" schemaName="booking">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="booking_id" type="BIGINT"/>
+            <column name="amount" type="DECIMAL(10,2)"/>
+            <column name="paid_at" type="TIMESTAMP"/>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_payments_booking"
+                                 baseTableName="payments"
+                                 baseColumnNames="booking_id"
+                                 referencedTableName="bookings"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="booking"
+                                 referencedTableSchemaName="booking"/>
+
+        <createTable tableName="events" schemaName="booking">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="unit_id" type="BIGINT"/>
+            <column name="created_by_id" type="BIGINT"/>
+            <column name="event_type" type="VARCHAR(50)"/>
+            <column name="event_time" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_events_unit"
+                                 baseTableName="events"
+                                 baseColumnNames="unit_id"
+                                 referencedTableName="units"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="booking"
+                                 referencedTableSchemaName="booking"/>
+        <addForeignKeyConstraint constraintName="fk_created_by_user"
+                                 baseTableName="events"
+                                 baseColumnNames="created_by_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 baseTableSchemaName="booking"
+                                 referencedTableSchemaName="booking"/>
+
+    </changeSet>
+</databaseChangeLog>

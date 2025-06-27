@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: "booking"
+  datasource:
+    url: jdbc:postgresql://localhost:5432/booking_db
+    username: booking_service
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: none
+      default_schema: booking
+    show-sql: true
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+  cache:
+    type: redis
+  docker:
+    compose:
+      locations: classpath:docker-compose.yml
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.http.converter.json: DEBUG
+    com.fasterxml.jackson.databind: DEBUG
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

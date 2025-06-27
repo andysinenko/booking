@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  postgres-bookingdb:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_DB: booking_db
+      POSTGRES_USER: booking_service
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+volumes:
+  pgdata:
