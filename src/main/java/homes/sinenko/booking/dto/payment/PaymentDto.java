@@ -16,9 +16,9 @@ public record PaymentDto(
         @Schema(description = "Unique identifier of the booking associated with the payment", example = "1")
         Long bookingId,
 
-        @Schema(description = "Value of payment", example = "100.00", required = true)
+        @Schema(description = "Value of payment", example = "100.00", requiredMode = Schema.RequiredMode.REQUIRED)
         BigDecimal amount,
 
-        @Schema(description = "Date and time when the payment was made", example = "2023-10-01T12:00:00", required = true)
+        @Schema(description = "Date and time when the payment was made", example = "2023-10-01T12:00:00", requiredMode = Schema.RequiredMode.REQUIRED)
         LocalDateTime paidAt
 ) {}

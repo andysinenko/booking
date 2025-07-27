@@ -4,7 +4,6 @@ import homes.sinenko.booking.dto.ErrorResponseDto;
 import homes.sinenko.booking.dto.event.CreateEventRequest;
 import homes.sinenko.booking.dto.event.EventDto;
 import homes.sinenko.booking.dto.event.EventMapper;
-import homes.sinenko.booking.entity.Event;
 import homes.sinenko.booking.service.EventService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

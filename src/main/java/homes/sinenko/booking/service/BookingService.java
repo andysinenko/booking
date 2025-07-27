@@ -64,9 +64,7 @@ public class BookingService {
         booking.setCreatedAt(LocalDateTime.now());
         booking.setCreatedBy(user);
 
-        var bookingSaved = bookingRepository.save(booking);
-
-        return bookingSaved;
+        return bookingRepository.save(booking);
     }
 
     @Transactional

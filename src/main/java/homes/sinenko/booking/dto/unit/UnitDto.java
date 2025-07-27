@@ -19,19 +19,19 @@ public record UnitDto(
         @Schema(description = "Unique identifier of the unit", example = "1")
         int rooms,
 
-        @Schema(description = "Type of the unit", example = "APARTMENT", required = true,
+        @Schema(description = "Type of the unit", example = "APARTMENT", requiredMode = Schema.RequiredMode.REQUIRED,
                 allowableValues = { "HOME", "FLAT", "APARTMENT" })
         UnitType type,
 
-        @Schema(description = "Floor number of the unit", example = "3", required = true)
+        @Schema(description = "Floor number of the unit", example = "3", requiredMode = Schema.RequiredMode.REQUIRED)
         int floor,
 
-        @Schema(description = "Cost per unit", example = "100.00", required = true)
+        @Schema(description = "Cost per unit", example = "100.00", requiredMode = Schema.RequiredMode.REQUIRED)
         BigDecimal cost,
 
         @Schema(description = "Description of the unit", example = "Cozy apartment with sea view")
         String description,
 
-        @Schema(description = "Availability of UNIT", example = "true", required = true)
+        @Schema(description = "Availability of UNIT", example = "true", requiredMode = Schema.RequiredMode.REQUIRED)
         Boolean available
 ) {}

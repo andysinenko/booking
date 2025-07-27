@@ -2,7 +2,6 @@ package homes.sinenko.booking.dto.event;
 
 import homes.sinenko.booking.entity.EventType;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
 import java.time.LocalDateTime;

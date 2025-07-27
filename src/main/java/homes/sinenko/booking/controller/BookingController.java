@@ -62,7 +62,7 @@ public class BookingController {
     })
     @PostMapping("/{id}/pay")
     public ResponseEntity<Void> payForBooking(@PathVariable Long id) {
-        var booking = bookingService.payForBooking(id);
+        bookingService.payForBooking(id);
         return ResponseEntity.ok().build();
     }
 }

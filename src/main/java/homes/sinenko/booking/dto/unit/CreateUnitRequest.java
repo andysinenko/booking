@@ -9,20 +9,20 @@ import java.math.BigDecimal;
 
 public record CreateUnitRequest(
         @NotNull(message = "Rooms quantity. Can not be a null or empty")
-        @Schema( description = "Rooms quantity", example = "3", required = true )
+        @Schema( description = "Rooms quantity", example = "3", requiredMode = Schema.RequiredMode.REQUIRED )
         int rooms,
 
         @NotNull(message = "UnitType - tpe of property")
-        @Schema( description = "UnitType must be HOME, FLAT, or APARTMENT", example = "APARTMENT", required = true,
+        @Schema( description = "UnitType must be HOME, FLAT, or APARTMENT", example = "APARTMENT", requiredMode = Schema.RequiredMode.REQUIRED,
         allowableValues = { "HOME", "FLAT", "APARTMENT" })
         UnitType type,
 
         @NotNull(message = "Floor number of unit. Can not be a null or empty")
-        @Schema( description = "Floor number", example = "3", required = true )
+        @Schema( description = "Floor number", example = "3", requiredMode = Schema.RequiredMode.REQUIRED )
         int floor,
 
 
-        @Schema(description = "Cost per unit", example = "100.00", required = true)
+        @Schema(description = "Cost per unit", example = "100.00", requiredMode = Schema.RequiredMode.REQUIRED)
         @NotNull(message = "Cost must not be null")
         @DecimalMin(value = "0.0", inclusive = false, message = "Cost must be greater than 0")
         BigDecimal cost,
@@ -31,7 +31,7 @@ public record CreateUnitRequest(
         @Size(max = 255, message = "Description must be at most 255 characters")
         String description,
 
-        @Schema(description = "ID of the user who created the unit", example = "1", required = true)
+        @Schema(description = "ID of the user who created the unit", example = "1", requiredMode = Schema.RequiredMode.REQUIRED)
         @NotNull(message = "createdById must not be null")
         Long createdById,
 
